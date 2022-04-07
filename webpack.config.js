@@ -1,18 +1,42 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const HandlebarsPlugin = require("handlebars-webpack-plugin");
+const webpack  = require('webpack');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
-    entry: './src/index.js',
+    entry: [
+        './src/index.js',
+        './src/assets/sass/main.scss'
+    ],
     mode: "development",
     devtool: 'inline-source-map',
     devServer: {
         static: './dist'
     },
     plugins: [
-        new HtmlWebpackPlugin({
-            title: 'Development',
+        new webpack.LoaderOptionsPlugin({
+            options: {
+                handlebarsLoader: {}
+            }
         }),
+        new HtmlWebpackPlugin({
+            title: 'Online Shopping Cart',
+            description: 'Buy Online Fruits',
+            template: './src/index.hbs'
+          }),
+          new MiniCssExtractPlugin({
+              filename: "style.css"
+          })
     ],
+    resolve: {
+        alias: {
+            handlebars: __dirname + '/node_modules/handlebars/dist/handlebars.min.js',
+            fs: false,
+            '@src': path.resolve(__dirname, 'src')
+        }
+        // extensions: ['.tsx', '.ts', '.js', 'webpack.js', '.web.js', '.html'],
+    },
     output: {
         path:   path.resolve(__dirname, 'dist'),
         filename: 'bundle.js',
@@ -22,16 +46,41 @@ module.exports = {
         rules: [
             {
                 test: /\.css$/i,
-                use: ['style-loader', 'css-loader']
+                use: [ MiniCssExtractPlugin.loader, 'css-loader']
             },
             {
                 test: /\.(png|svg|jpg|jpeg|gif)$/i,
-                type: 'asset/resource',
+                type: 'assets/images',
                   
             },
             {
                 test: /\.(woff|woff2|eot|ttf|otf)$/i,
                 type: 'asset/resource',
+            },
+            {
+                test: /\.hbs$/,
+                loader: "handlebars-loader"
+            },
+            {
+                test: /\.scss$/i,
+                exclude: /node_modules/,
+                use: [
+                    {
+                        loader: 'style-loader',
+                    },
+                    {
+                        loader: 'css-loader',
+                        options: {
+                            sourceMap: true,
+                        },
+                    },
+                    {
+                        loader: 'sass-loader',
+                        options: {
+                            sourceMap: true,
+                        },
+                    }
+                ]
             }
         ]
     }

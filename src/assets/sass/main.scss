@@ -1,6 +1,11 @@
 @import 'variables.scss';
+@import 'breakpoints.scss';
 @import 'layout.scss';
 
 //components
 @import '../../components/header/header.scss';
 @import '../../components/header/navigation/navigation.scss';
+@import '../../components/header/cart/cart.scss';
+@import '../../components/carousel/carousel.scss';
+@import '../../components/products/products.scss';
+@import '../../components/footer/footer.scss';

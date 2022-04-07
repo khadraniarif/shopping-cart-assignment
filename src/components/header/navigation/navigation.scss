@@ -5,3 +5,9 @@ nav.navigation {
         margin-right: 10px;
     }
 }
+
+@include for-phone-only {
+    nav.navigation {
+        display: none;
+    }
+}

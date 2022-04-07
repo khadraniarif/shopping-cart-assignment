@@ -11,9 +11,14 @@ body {
     .row {
         position: relative;
     }
+    
+}
+.mg-top {
+    margin-top: $common-margin;
 }
 .flex-container {
     display: flex;
+    align-items: center;
 }
 a {
     text-decoration: none;
