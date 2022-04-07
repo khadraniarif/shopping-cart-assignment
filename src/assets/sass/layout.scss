@@ -1,0 +1,24 @@
+* {
+    box-sizing: border-box;
+}
+body {
+    font-family: 'MyFont';
+    color: $primary-color;
+}
+.container {
+    max-width: $max-width;
+    margin: 0 auto;
+    .row {
+        position: relative;
+    }
+}
+.flex-container {
+    display: flex;
+}
+a {
+    text-decoration: none;
+    color: $link-color;
+}
+img {
+    max-width: 100%;
+}
