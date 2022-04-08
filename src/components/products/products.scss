@@ -2,6 +2,8 @@
     margin-bottom: $common-margin;
     .products__list {
         margin-top: 30px;
+        box-shadow: 0 4px 5px 0px grey;
+        padding: 10px 0;
         &:nth-child(even) {
             flex-direction: row-reverse;
         }
@@ -17,6 +19,7 @@
             border: 0;
             padding: 10px;
             margin-top: 20px;
+            cursor: pointer;
         }
     }
 }

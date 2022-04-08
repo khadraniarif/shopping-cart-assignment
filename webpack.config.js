@@ -24,10 +24,15 @@ module.exports = {
             title: 'Online Shopping Cart',
             description: 'Buy Online Fruits',
             template: './src/index.hbs'
-          }),
-          new MiniCssExtractPlugin({
+        }),
+        new HtmlWebpackPlugin({
+            title: "Products",
+            template: "src/pages/products.hbs",
+            filename: "products.html"
+        }),
+        new MiniCssExtractPlugin({
               filename: "style.css"
-          })
+        })
     ],
     resolve: {
         alias: {
